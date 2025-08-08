@@ -316,6 +316,13 @@ To access it from your Node IP, you can deploy the related LoadBalancer (eg. if 
 ``` bash
 kubectl apply -f deploy/examples/dashboard-loadbalancer.yaml
 ```
+You can now acces your dashboard through: NodeIP:LoadBalancer_External_Port
+Credentials are set by default, but the password is randomly generated.
+To get it, use:
+``` bash
+kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
+```
+Then, you can login with: admin:decoded_password
 
 # Tricks
 ## Set the Block storageclass as default
